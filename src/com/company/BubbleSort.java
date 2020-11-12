@@ -2,7 +2,7 @@ package com.company;
 
 import java.util.Arrays;
 
-public class BubbleSort  {
+public class BubbleSort {
     // Ska sortera [3,6, 65,11, 5,1] från minsta värde till högsta med hjälp av bubble sort
 
 
@@ -23,11 +23,10 @@ public class BubbleSort  {
         bt.printInOrder(bt.root);
         System.out.println("-------IN POSTORDER------");
         bt.printInPostOrder(bt.root);
-        System.out.println("------IN PREORDER----");
+        System.out.println("------IN PREORDER--------");
         bt.printInPreOrder(bt.root);
-        System.out.println("----- Reverse InOrder");
+        System.out.println("----- Reverse InOrder-------");
         bt.printInReverseOrder(bt.root);
-
 
 
         //
@@ -39,8 +38,6 @@ public class BubbleSort  {
    *///
 
     }
-
-
 
 
     public static int[] acendingOrder(int[] array) {
