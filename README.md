@@ -1,2 +1,2 @@
 # BinaryTree
-Soleiman Ibrahim och Alexandra Nilsson
+Soleiman Ibrahim och Alexandra Nicklasson
