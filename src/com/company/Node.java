@@ -50,22 +50,6 @@ public class Node {
         return right;
     }
 
-    public Node get (int key) {
-        if (key == this.key) {
-            return this;
-        }
-        if (key < this.key) {
-            if (left != null) {
-                return left.get(key);
-            }
-        } else {
-            if (right != null) {
-                return right.get(key);
-            }
-        }
-        return null;
-    }
-
     public int minValue() {
         if (left == null) {
             return key;

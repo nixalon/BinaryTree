@@ -30,7 +30,6 @@ public class BubbleSort  {
 
 
 
-
         //
      /*     25          Pre Order                Traversering Pre-order (NLR) ABDEHICFG
         20    27        Post Order

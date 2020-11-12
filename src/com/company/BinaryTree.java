@@ -43,14 +43,6 @@ public class BinaryTree {
         printInReverseOrder(tree.left);
     }
 
-    public int minValue() {
-        if (root == null) {
-            return Integer.MIN_VALUE;
-        } else {
-            return root.minValue();
-        }
-    }
-
     public void remove(int key) {
         root = remove(root, key);
     }
