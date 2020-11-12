@@ -2,14 +2,47 @@ package com.company;
 
 import java.util.Arrays;
 
-public class BubbleSort extends BinaryTree {
+public class BubbleSort  {
     // Ska sortera [3,6, 65,11, 5,1] från minsta värde till högsta med hjälp av bubble sort
 
 
     public static void main(String[] args) {
-        int arr[] = {3, 6, 65, 11, 5, 1};
-        System.out.println("Tadaaaa: " + Arrays.toString(acendingOrder(arr)) + "\n");
+        int[] arr = {3, 6, 65, 11, 5, 1};
+        System.out.println("Sorted Array: " + Arrays.toString(acendingOrder(arr)) + "\n");
+
+        BinaryTree bt = new BinaryTree();
+        bt.insert(25);
+        bt.insert(20);
+        bt.insert(15);
+        bt.insert(27);
+        bt.insert(29);
+        bt.insert(30);
+        bt.insert(32);
+
+        System.out.println("-------INORDER------");
+        bt.printInOrder(bt.root);
+        System.out.println("-------IN POSTORDER------");
+        bt.printInPostOrder(bt.root);
+        System.out.println("------IN PREORDER----");
+        bt.printInPreOrder(bt.root);
+        System.out.println("----- Reverse InOrder");
+        bt.printInReverseOrder(bt.root);
+
+
+
+
+        //
+     /*     25          Pre Order                Traversering Pre-order (NLR) ABDEHICFG
+        20    27        Post Order
+      15        29      In Order
+                    30
+                       32  In reverseOrder
+   *///
+
     }
+
+
+
 
     public static int[] acendingOrder(int[] array) {
         int temp;
@@ -24,17 +57,7 @@ public class BubbleSort extends BinaryTree {
             }
         }
         return array;
+
     }
 }
-
-
-
-    /*public static void main(String [] args) {
-        int[] a = new int[]{3,6,65,11,5,1};
-        int v = a[i];
-        for (int i = 0; i < a.length; i++) {
-            if(i < )
-        }
-    }*/
-
 

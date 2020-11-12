@@ -1,136 +1,99 @@
 package com.company;
 
 public class BinaryTree {
+
     Node root;
 
-    static class Node{
-        Node left;
-        Node right;
-        int key;                        //Värde av noden
-
-        public void setKey() {
-            this.key = key;
-        }
-        public void setLeft(Node left) {
-            this.left = left;
-        }
-        public void setRight(Node right) {
-            this.right = right;
-        }
-        public int getKey() {
-            return key;
-        }
-        public Node getRight(){
-            return right;
-        }
-        public Node getLeft(){
-            return left;
-        }
-        public Node(int key) {
-            this.key = key;
-        }
-    }
-
-    public void printTreeInOrder() {
-        printTreeInOrder(root);
-    }
-
-    private void printTreeInOrder(Node tree){
-        if(tree == null){
+    public void printInOrder(Node tree) {
+        if (tree == null) {
             return;
         }
-        printTreeInOrder(tree.left);
+        printInOrder(tree.left);
         System.out.println(tree.key);
-        printTreeInOrder(tree.right);
+        printInOrder(tree.right);
     }
 
-    public void printTreeInReverseOrder(){
-        printTreeInReverseOrder(root);
-    }
-
-    private void printTreeInReverseOrder(Node tree) {
-        if(tree == null){
+    public void printInPreOrder(Node tree) {
+        if (tree == null) {
             return;
         }
-        printTreeInReverseOrder(tree.right);
         System.out.println(tree.key);
-        printTreeInReverseOrder(tree.left);
+        printInPreOrder(tree.left);
+        printInPreOrder(tree.right);
+
     }
 
-    public void insert(int key){
-        root = insertRec(root, key);
-    }
-
-    private Node insertRec(Node tree, int key) {
-        if(tree == null){
-            tree = new Node(key);
-            return tree;
+    public void printInPostOrder(Node tree) {
+        if (tree == null) {
+            return;
         }
-        if(key < tree.key){
-            tree.left = insertRec(tree.left, key);
-        }
-        else if (key > tree.key){
-            tree.right = insertRec(tree.right, key);
-        }
-        return tree;
+
+        printInPostOrder(tree.left);
+        printInPostOrder(tree.right);
+        System.out.println(tree.key);
     }
 
-    public static void main(String [] Args){
-        BinaryTree bt = new BinaryTree();
+    public void printInReverseOrder(Node tree) {
+        if (tree == null) {
+            return;
+        }
 
-        bt.insert(8);
-        bt.insert(3);
-        bt.insert(10);
-        bt.insert(1);
-        bt.insert(6);
-        bt.insert(13);
-
-        bt.printTreeInReverseOrder();
-        bt.remove(1);
-        System.out.println("----------------");
-        bt.printTreeInOrder();
-
+        printInReverseOrder(tree.right);
+        System.out.println(tree.key);
+        printInReverseOrder(tree.left);
     }
 
-    private void remove(int key){
+    public int minValue() {
+        if (root == null) {
+            return Integer.MIN_VALUE;
+        } else {
+            return root.minValue();
+        }
+    }
+
+    public void remove(int key) {
         root = remove(root, key);
     }
 
-    public Node remove(Node tree, int key){
-        if(tree == null){
+    public Node remove(Node tree, int key) {
+        if (tree == null) {
             return null;
         }
-        if(key == tree.key){                                    //Om värdet man vill ta bort matchar med ett i trädet...
-            if(tree.left == null && tree.right == null){        //Om trädet inte har några barn (aka är ett löv)
-                return null;
+
+        if (key < tree.key) {                               //Om värdet man vill ta bort matchar med ett i trädet...
+            tree.setLeft(remove(tree.getLeft(), key));
+        } else if (key > tree.key) {
+            tree.setRight(remove(tree.getRight(), key));
+        } else {
+
+            if (tree.getLeft() == null) {                   //eller om det finns siffror åt vänster
+                return tree.getRight();                     //Fortsätt till höger.
+            } else if (tree.getRight() == null) {
+                return tree.getLeft();
             }
-            else if (tree.left == null) {                       //eller om det finns siffror åt höger
-                return tree.right;                              //Fortsätt till höger.
-            }
-            else if (tree.right == null){                       //eller om det finns noder åt vänster
-                return tree.left;                               //Fortsätt till vänster.
-            }
-            else {
-                int minValue = minValue(root.getRight());
-                root.setKey(minValue);
-                root.setRight(deleteNode(root.getRight(), minValue));
-            }
-        }
-        if (key < tree.key){
-            tree.left = remove(tree.left, key);
-            return tree;
-        }
-        else if(key > tree.key){
-            tree.right = remove(tree.right, key);
-            return tree;
+            tree.setData(tree.getRight().minValue());
+            tree.setRight(remove(tree.getRight(), tree.key));
         }
         return tree;
     }
 
-    private int minValue(Node right) {
-        if(Node.getLeft() != null) {
-            return minValue(Node.getLeft());
+    public void insert(int key) {
+        if (root == null) {
+            root = new Node(key);
+        } else {
+            root.insert(key);
         }
-        return Node.getKey();
+    }
+
+    public Node get (Node node, int value) {
+        if (value == node.key) {
+            return node;
+        }
+
+        if (value < node.key) {
+            return get(node.getLeft(), value);
+        } else {
+            return get(node.getRight(), value);
+        }
     }
 }
